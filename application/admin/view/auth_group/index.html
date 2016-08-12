@@ -1,0 +1,47 @@
+{extend name="base/common" /} {block name="content"}
+<button type="button" tooltip="添加角色" class="btn btn-sm btn-azure btn-addon" onclick="javascript:window.location.href = '{:url('auth_group/add')}'"> <i class="fa fa-plus"></i> Add
+</button>
+<div class="row">
+    <div class="col-lg-12 col-sm-12 col-xs-12">
+        <div class="widget">
+            <div class="widget-body">
+                <div class="flip-scroll">
+                    <table class="table table-bordered table-hover">
+                        <thead class="">
+                            <tr>
+                                <th class="text-center">角色ID</th>
+                                <th class="text-center">角色名称</th>
+                                <th class="text-center">操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {volist name="roles" id="role"}
+                            {if condition="$role.id neq 1"}
+                            <tr>
+                                <td align="center">{$role.id}</td>
+                                <td align="center">{$role.title}</td>
+                                <td align="center">
+                                    <a href="{:url('auth_group/edit',['id'=>$role['id']])}" class="btn btn-primary btn-sm shiny">
+                                        <i class="fa fa-edit"></i> 编辑
+                                    </a>
+                                    <a href="#" onclick="warning('确实要删除吗', '{:url('auth_group/del',['id'=>$role['id']])}')" class="btn btn-danger btn-sm shiny">
+                                        <i class="fa fa-trash-o"></i> 删除
+                                    </a>
+                                    <a href="{:url('auth_group/resource',['id'=>$role['id']])}" class="btn btn-sky btn-sm shiny">
+                                        <i class="fa fa-cog"></i> 资源管理
+                                    </a>
+                                </td>
+                            </tr>
+                            {/if}
+                            {/volist}
+                        </tbody>
+                    </table>
+                </div>
+                <div>
+                    {$roles->render()}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{/block}

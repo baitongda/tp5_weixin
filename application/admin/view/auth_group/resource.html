@@ -1,0 +1,83 @@
+{extend name="base/common" /} {block name="content"}
+<div class="row">
+    <div class="col-lg-12 col-sm-12 col-xs-12">
+        <div class="widget">
+            <div class="widget-header bordered-bottom bordered-sky">
+                <span class="widget-caption">设置资源:{$data.title}</span>
+            </div>
+            <div class="widget-body">
+                <form method="POST" action="">
+                    <table cellspacing="1" id="rs" class="table table-bordered table-hover">
+                        {volist name="resource" id="vo"}
+                        <tr class="r1">
+                            <td>
+                                <div class="col-lg-12 col-sm-12 col-xs-12">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" class="inverted" name="resource[]" value="{$vo.id}" {in name="vo.id" value="$data.rules"}checked{/in}>
+                                            <span class="text">{$vo.title}</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                {if isset($vo.child)} {volist name="vo.child" id="vo1"}
+                                <div>
+                                    <div class="col-lg-12 col-sm-12 col-xs-12 r2" style="background:#ccc;">
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox" class="inverted" name="resource[]" value="{$vo1.id}" {in name="vo1.id" value="$data.rules"}checked{/in}>
+                                                <span class="text">{$vo1.title}</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    {if isset($vo1.child)} {volist name="vo1.child" id="vo2"}
+                                    <div class="col-lg-2 col-sm-2 col-xs-2 r3">
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox" class="inverted" name="resource[]" value="{$vo2.id}" {in name="vo2.id" value="$data.rules"}checked{/in}>
+                                                <span class="text">{$vo2.title}</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    {/volist}
+                                    <div class="clearfix"></div>
+                                    {/if}
+                                </div>
+                                {/volist} {/if}
+                            </td>
+                        </tr>
+                        {/volist}
+                        <tr>
+                            <td colspan="2">
+                                <input type="hidden" name="id" value="{$data.id}">
+                                <input type="submit" value="保存" class="btn btn-default shiny">
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{/block} {block name="script"}
+<script>
+$(function() {
+    $('.r1 td:nth-child(1) .inverted').on('click', function() {
+        if ($(this).prop('checked')) {
+            $(this).closest('td').siblings().find('.inverted').prop('checked', true);
+        } else {
+            $(this).closest('td').siblings().find('.inverted').prop('checked', false);
+        }
+    });
+
+    $('.r1 td:nth-child(2) .r2 .inverted').on('click', function() {
+    	if($(this).prop('checked')){
+        	$(this).closest('.r2').siblings('.r3').find('.inverted').prop('checked', true);
+    	}else{
+    		$(this).closest('.r2').siblings('.r3').find('.inverted').prop('checked', false);
+    	}
+    })
+})
+</script>
+{/block}

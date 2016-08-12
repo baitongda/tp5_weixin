@@ -1,0 +1,44 @@
+{extend name="base/common" /} {block name="content"}
+<button type="button" tooltip="添加音乐回复" class="btn btn-sm btn-azure btn-addon" onclick="javascript:window.location.href = '{:url('music/add')}'"> <i class="fa fa-plus"></i> Add
+</button>
+<div class="row">
+    <div class="col-lg-12 col-sm-12 col-xs-12">
+        <div class="widget">
+            <div class="widget-body">
+                <div class="flip-scroll">
+                    <table class="table table-bordered table-hover">
+                        <thead class="">
+                            <tr>
+                                <th class="text-center">ID</th>
+                                <th class="text-center">关键词</th>
+                                <th class="text-center">标题</th>
+                                <th class="text-center">操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {volist name="list" id="vo"}
+                            <tr>
+                                <td align="center">{$vo.id}</td>
+                                <td align="center">{$vo.keyword}</td>
+                                <td align="center">{$vo.title}</td>
+                                <td align="center">
+                                    <a href="{:url('music/edit',['id'=>$vo['id']])}" class="btn btn-primary btn-sm shiny">
+                                        <i class="fa fa-edit"></i> 编辑
+                                    </a>
+                                    <a href="#" onclick="warning('确实要删除吗', '{:url('music/del',['id'=>$vo['id']])}')" class="btn btn-danger btn-sm shiny">
+                                        <i class="fa fa-trash-o"></i> 删除
+                                    </a>
+                                </td>
+                            </tr>
+                            {/volist}
+                        </tbody>
+                    </table>
+                </div>
+                <div>
+                	{$list->render()}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{/block}

@@ -1,0 +1,81 @@
+{extend name="base/common" /} {block name="content"}
+<div class="row">
+    <div class="col-lg-12 col-sm-12 col-xs-12">
+        <div class="widget">
+            <div class="widget-header bordered-bottom bordered-blue">
+                <span class="widget-caption">新增规则</span>
+            </div>
+            <div class="widget-body">
+                <div id="horizontal-form">
+                    <form class="form-horizontal" role="form" action="" method="post">
+                        <div class="form-group">
+                            <label for="name" class="col-sm-2 control-label no-padding-right">规则类型</label>
+                            <div class="col-sm-6">
+                                <select name="type" style="width: 100%;">
+                                    <option value="1">按节点</option>
+                                    <option value="2">其他</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="title" class="col-sm-2 control-label no-padding-right">名称</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" id="title" placeholder="" name="title" value="" required>
+                            </div>
+                            <p class="help-block col-sm-4 red">* 必填</p>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="pid" class="col-sm-2 control-label no-padding-right">上级菜单</label>
+                            <div class="col-sm-6">
+                                <select name="pid" style="width: 100%;">
+                                    <option value="0">一级菜单</option>
+                                    {volist name="pidData" id="vo"}
+                                    {notin name="vo.id" value="1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17"}
+                                    <option value="{$vo.id}">{if $vo.count == 2}——{elseif $vo.count == 3}————{/if}{$vo.title}</option>
+                                    {/notin}
+                                    {/volist}
+                                </select>
+                            </div>
+                        </div>                        
+                        <div class="form-group">
+                            <label for="name" class="col-sm-2 control-label no-padding-right">节点/规则标识</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" id="name" placeholder="" name="name" value="">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="condition" class="col-sm-2 control-label no-padding-right">附加条件</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" id="condition" placeholder="" name="condition" value="">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="sort" class="col-sm-2 control-label no-padding-right">排序</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" id="sort" placeholder="" name="sort" value="">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="is_show" class="col-sm-2 control-label no-padding-right">是否显示</label>
+
+                            <div class="col-xs-4">
+                                <label>
+                                    <input class="checkbox-slider slider-icon yesno" type="checkbox" name="is_show" checked>
+                                    <span class="text"></span>
+                                </label>
+                            </div>                            
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <button type="submit" class="btn btn-default">保存信息</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{/block}

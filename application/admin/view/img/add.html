@@ -1,0 +1,141 @@
+{extend name="base/common" /} 
+
+{block name="extra"}
+  <link rel="stylesheet" type="text/css" href="/static/kindeditor/themes/default/default.css">
+  <script type="text/javascript" src='/static/kindeditor/kindeditor.js'></script>
+  <script type="text/javascript" src='/static/kindeditor/lang/zh_CN.js'></script>
+    <script type="text/javascript">
+    KindEditor.ready(function(K){
+        
+        var editor = K.create('textarea[name="info"]', {
+          allowFileManager : true
+        });
+        $('.ke-container.ke-container-default').css('width','auto');
+      editor = K.editor({
+        allowFileManager : true,
+        uploadJson : '/static/kindeditor/php/upload_json.php',
+        fileManagerJson : '/static/kindeditor/php/file_manager_json.php',
+      });
+      
+      K('#chooseimg').click(function(){
+        console.log(editor);
+        editor.loadPlugin('image', function(){
+          editor.plugin.imageDialog({
+            imageUrl : K('#pic').val(),
+            clickFn : function(url,title,width,height,border,align){
+              K('#pic').val(url);
+              editor.hideDialog();
+            }
+          })
+        })
+      })
+    })
+  </script>
+<style>
+    #label-box{
+        margin-top: 10px;
+    }
+    #label-box a{
+        margin-right: 10px;
+    }
+</style>
+{/block}
+
+
+{block name="content"}
+<div class="row">
+    <div class="col-lg-12 col-sm-12 col-xs-12">
+        <div class="widget">
+            <div class="widget-header bordered-bottom bordered-blue">
+                <span class="widget-caption">新增图文回复</span>
+            </div>
+            <div class="widget-body">
+                <div id="horizontal-form">
+                    <form class="form-horizontal" role="form" action="" method="post">
+                        <div class="form-group">
+                            <label for="keyword" class="col-sm-2 control-label no-padding-right">关键词</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" id="keyword" placeholder="多个关键词请用空格隔开：例如：美丽 漂亮 好看" name="keyword" required></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="type" class="col-sm-2 control-label no-padding-right">关键词类型</label>
+                            <div class="col-sm-10 radio">
+                                <label>
+                                    <input name="type" type="radio" class="colored-blue" value="1" checked>
+                                    <span class="text"> 完全匹配 用户输入的和此关键词一样才会触发!</span>
+                                </label>
+                            </div>
+
+                            <div class="col-sm-10 col-sm-offset-2 radio">
+                                <label>
+                                    <input name="type" type="radio" class="colored-danger" value="2">
+                                    <span class="text"> 包含匹配 (只要用户输入的文字包含本关键词就触发)</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="title" class="col-sm-2 control-label no-padding-right">标题</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" id="title" placeholder="" name="title" value="" required>
+                            </div>
+                            <p class="help-block col-sm-4 red">* 必填</p>
+                        </div>
+                        <div class="form-group">
+                            <label for="text" class="col-sm-2 control-label no-padding-right">简介</label>
+                            <div class="col-sm-6">
+                                
+                                <textarea name="text" id="text" rows="5" style="width:100%;" required></textarea>
+                            </div>
+                            <p class="help-block col-sm-4 red">* 必填</p>
+                        </div>
+                        <div class="form-group">
+                            <label for="sorts" class="col-sm-2 control-label no-padding-right">排序</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" id="sorts" placeholder="" name="sorts" value="">
+                            </div>
+                        </div> 
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label no-padding-right">封面图片</label>
+                            <div class="col-sm-6">
+                                <input class="form-control" type="text" name="pic" id="pic" value="" name="pic">
+                            </div>
+                            <div class='col-sm-1 no-padding-left'>
+                                <input type='button' value='选择图片' id='chooseimg' class='btn btn-success'>
+                            </div>
+                        </div>
+
+                        <div class="form-group" ng-init="showpic_flag=false">
+                            <label for="type" class="col-sm-2 control-label no-padding-right">详细页是否显示封面</label>
+                            <div class="col-sm-10">
+                                <label>
+                                    <input class="checkbox-slider yesno colored-blue" type="checkbox" name="showpic" value="1">
+                                    <span class="text"></span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="info" class="col-sm-2 control-label no-padding-right">内容</label>
+                            <div class="col-sm-10">
+                                <textarea name="info" id="info"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="url" class="col-sm-2 control-label no-padding-right">跳转链接</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="url" placeholder="" name="url"></div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <button type="submit" class="btn btn-default">保存信息</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+{/block}
+

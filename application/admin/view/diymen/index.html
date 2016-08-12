@@ -1,0 +1,58 @@
+{extend name="base/common" /} {block name="content"}
+<button type="button" tooltip="添加菜单" class="btn btn-sm btn-azure btn-addon" onclick="javascript:window.location.href = '{:url('diymen/add')}'"> <i class="fa fa-plus"></i> Add
+</button>
+
+<button type="button" class="btn btn-sm btn-azure" onclick="javascript:window.location.href = '{:url('diymen/createMenu')}'"> <i class="fa fa-plus"></i>
+    生成菜单
+</button>
+<div class="row">
+    <div class="col-lg-12 col-sm-12 col-xs-12">
+        <div class="widget">
+            <div class="widget-body">
+                <div class="flip-scroll">
+                    <table class="table table-bordered table-hover">
+                        <thead class="">
+                            <tr>
+                                <th class="text-center">ID</th>
+                                <th class="text-center">菜单名称</th>
+                                <th class="text-center">关键词</th>
+                                <th class="text-center">跳转地址</th>
+                                <th class="text-center">是否显示</th>
+                                <th class="text-center">排序</th>
+                                <th class="text-center">操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {volist name="list" id="vo"}
+                            <tr>
+                                <td align="center">{$vo.id}</td>
+                                <td align="left">{if $vo.count == 2}——{/if}{$vo.title}</td>
+                                <td align="center">{$vo.keyword}</td>
+                                <td align="center">{$vo.url}</td>
+                                <td align="center">
+
+                                    <label>
+                                        <input class="checkbox-slider yesno recommend" type="checkbox" {if $vo.is_show == 1}checked{/if} data-id="{$vo.id}">
+                                        <span class="text"></span>
+                                    </label>
+                                </td>
+                                <td align="center">{$vo.sort}</td>
+                                <td align="center">
+                                    <a href="{:url('diymen/edit',['id'=>$vo['id']])}" class="btn btn-primary btn-sm shiny">
+                                        <i class="fa fa-edit"></i> 编辑
+                                    </a>
+                                    <a href="#" onclick="warning('确实要删除吗', '{:url('diymen/del',['id'=>$vo['id']])}')" class="btn btn-danger btn-sm shiny">
+                                        <i class="fa fa-trash-o"></i> 删除
+                                    </a>
+                                </td>
+                            </tr>
+                            {/volist}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{/block}
+

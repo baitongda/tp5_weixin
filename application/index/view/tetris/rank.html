@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+	<title>Document</title>
+	<style>
+		*{margin: 0px;padding: 0px;}
+		body{
+			max-width: 414px;
+			height: 100vh;
+			margin: 0 auto;
+			overflow-y: auto;
+			background: #fff;
+		}
+		ul{
+			list-style: none;
+		}
+		li{
+			height: 50px;
+			border-bottom: 1px solid #eee;
+		}
+		li span{
+			height: 50px;
+			line-height: 50px;
+			display: inline-block;
+			float: left;
+			margin-left: 10px;
+		}
+		.score{
+			float: right;
+			margin-right: 10px;
+		}
+		li img{height: 40px;margin-top:5px;float: left;margin-left: 10px;}
+	</style>
+</head>
+<body>
+	<ul>
+		{volist name="list" id="vo"}
+		<li>
+			<span>{$i}</span>
+			<img src="{$vo.thumb}" alt="">
+			<span>{$vo.name}</span>
+			<span class="score">{$vo.score}</span>
+		</li>
+		{/volist}
+	</ul>
+</body>
+</html>

@@ -1,0 +1,57 @@
+            <!-- Page Sidebar -->
+            <div class="page-sidebar" id="sidebar">
+                <!-- Page Sidebar Header-->
+                <div class="sidebar-header-wrapper">
+                    <input type="text" class="searchinput" />
+                    <i class="searchicon fa fa-search"></i>
+                    <div class="searchhelper">Search Reports, Charts, Emails or Notifications</div>
+                </div>
+                <!-- /Page Sidebar Header -->
+                <!-- Sidebar Menu -->
+                <ul class="nav sidebar-menu">
+                    <!--Dashboard-->
+                    {volist name="sidebar" id="item"}
+                    <li {if $parent_id_1 == $item['id'] || $parent_id_2 == $item['id']}class="open"{/if}>
+                        <a href='{if !empty($item["name"])}{:url($item['name'])}{else}#{/if}' {if isset($item['child'])}class="menu-dropdown"{/if}>
+                            <i class="menu-icon fa fa-gear"></i>
+
+                            <span class="menu-text">
+                                {$item['title']}
+                            </span>
+
+                            <i class="menu-expand"></i>
+                        </a>
+                        {if isset($item['child'])}
+                        <ul class="submenu">
+                            {volist id="level2" name="item['child']"}
+                            <li {if $parent_id_1 == $level2['id'] || $parent_id_2 == $level2['id']}class="open"{/if}{if $uri == $level2['name']}class="active"{/if}>
+                                <a href='{if !empty($level2["name"])}{:url($level2['name'])}{else}#{/if}' {if isset($level2['child'])}class="menu-dropdown"{/if}>
+                                    <span class="menu-text">
+                                        {$level2['title']}
+                                    </span>
+                                    <i class="menu-expand"></i>
+                                </a>
+                                {if isset($level2['child'])}
+                                <ul class="submenu">
+                                    {volist id="level3" name="level2['child']"}
+                                    <li {if $uri == $level3['name']}class="active"{/if}>
+                                        <a href='{if !empty($level3["name"])}{:url($level3['name'])}{else}#{/if}'>
+                                            <span class="menu-icon glyphicon glyphicon-hand-right"></span>
+                                            <span class="menu-text">{$level3['title']}</span>
+                                        </a>
+                                    </li>
+                                    {/volist}
+                                </ul>
+                                {/if}
+                            </li>
+                            {/volist}
+
+                        </ul>                            
+                        {/if}
+                    </li>                        
+                    {/volist}
+
+                </ul>
+                <!-- /Sidebar Menu -->
+            </div>
+            <!-- /Page Sidebar -->

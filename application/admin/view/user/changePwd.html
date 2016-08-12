@@ -1,0 +1,46 @@
+{extend name="base/common"}
+
+{block name="content"}
+<div class="row">
+    <div class="col-lg-12 col-sm-12 col-xs-12">
+        <div class="widget">
+            <div class="widget-header bordered-bottom bordered-blue">
+                <span class="widget-caption">修改密码</span>
+            </div>
+            <div class="widget-body">
+                <div id="horizontal-form">
+                    <form class="form-horizontal" role="form" action="" method="post">
+                        <div class="form-group">
+                            <label for="oldPassword" class="col-sm-2 control-label no-padding-right">旧密码</label>
+                            <div class="col-sm-6">
+                                <input type="password" class="form-control" id="oldPassword" placeholder="" name="oldPassword" value="" required>
+                            </div>
+                            <p class="help-block col-sm-4 red">* 必填</p>
+                        </div>
+                        <div class="form-group">
+                            <label for="password" class="col-sm-2 control-label no-padding-right">新密码</label>
+                            <div class="col-sm-6">
+                                <input type="password" class="form-control" id="password" placeholder="" name="password" value="" required>
+                            </div>
+                            <p class="help-block col-sm-4 red">* 必填</p>
+                        </div>
+                        <div class="form-group">
+                            <label for="repassword" class="col-sm-2 control-label no-padding-right">确认新密码</label>
+                            <div class="col-sm-6">
+                                <input type="password" class="form-control" id="repassword" placeholder="" name="repassword" value="" required>
+                            </div>
+                            <p class="help-block col-sm-4 red">* 必填</p>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <button type="submit" class="btn btn-default">保存信息</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{/block}

@@ -1,0 +1,50 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	{include file="public/head" /}
+    {block name="extra"}{/block}
+</head>
+<body>
+	<!-- 头部 -->
+	{include file="public/navbar" /}
+	<!-- /头部 -->
+	
+	<div class="main-container container-fluid">
+		<div class="page-container">
+			{include file="public/sidebar" /}
+            <!-- Page Content -->
+            <div class="page-content">
+                <!-- Page Breadcrumb -->
+                <div class="page-breadcrumbs">
+                    <ul class="breadcrumb">
+                    {if isset($resource3)}
+                    <li>
+                        <a href="#">{$resource3['title']}</a>
+                    </li>
+                    {/if}
+                    {if isset($resource2)}
+                    <li>
+                        <a href='#'>{$resource2['title']}</a>
+                    </li>
+                    {/if}
+                    {if isset($resource1)}
+                    <li class="active">{$resource1['title']}</li>
+                    {/if}
+                    </ul>
+                </div>
+                <!-- /Page Breadcrumb -->
+
+                <!-- Page Body -->
+                <div class="page-body">
+                    {block name="content"}{/block}
+                </div>
+                <!-- /Page Body -->
+            </div>
+            <!-- /Page Content -->
+		</div>	
+	</div>
+
+	{include file="public/script" /}
+    {block name="script"}{/block}
+</body>
+</html>
