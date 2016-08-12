@@ -203,11 +203,13 @@ return [
     'UC_API_TYPE'=>'Model',
     'UC_AUTH_KEY'=>'P~^nlxj3i?e-%pwSHr"gLyA|EQ+Is@5!1.2RbM<W',
     // 微信配置
-    'token'=>'wxbuluo',
+    'token'=>'',
     'encodingaeskey'=>'',
-    'appid'=>'wx4aa6333df1e2b1b6',
-    'appsecret'=>'e25a9ecdc4b844db83c1646fb555170d',
+    'appid'=>'',
+    'appsecret'=>'',
 
+    // domian
     'site_url'=>'http://demo.wxbuluo.com',
+    // 图片服务器地址
     'img_server'=>'http://demo.wxbuluo.com',
 ];
