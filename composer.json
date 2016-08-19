@@ -17,10 +17,7 @@
     ],
     "require": {
         "php": ">=5.4.0",
-        "topthink/framework": "*"
-    },
-    "extra": {
-        "think-path": "thinkphp"
+        "topthink/think-captcha": "^1.0"
     },
     "minimum-stability": "dev"
 }
